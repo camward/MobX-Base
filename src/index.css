@@ -7,3 +7,16 @@
 .ant-layout-footer {
   text-align: center;
 }
+
+.action-block {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.action-controls button {
+  margin-left: 15px;
+}
+
+.field-input {
+  margin-bottom: 10px;
+}

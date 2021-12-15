@@ -1,6 +1,8 @@
 import { Layout, Typography } from "antd";
+import Controls from "./components/controls";
+import Table from "./components/table";
 
-function App() {
+const App = () => {
   const { Header, Content, Footer } = Layout;
   const { Text } = Typography;
 
@@ -9,10 +11,13 @@ function App() {
       <Header>
         <Text type="success">Sprint Board</Text>
       </Header>
-      <Content>Content</Content>
+      <Content>
+        <Controls />
+        <Table />
+      </Content>
       <Footer>MobX, &copy; {new Date().getFullYear()}</Footer>
     </Layout>
   );
-}
+};
 
 export default App;
