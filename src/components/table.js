@@ -21,7 +21,7 @@ const Table = observer(() => {
     },
   ];
 
-  const data = store.users.devsList.map((dev) => ({
+  const data = store.users.filteredDevelopers.map((dev) => ({
     key: dev.id,
     name: dev.name,
     sp: dev.sp,
@@ -30,7 +30,7 @@ const Table = observer(() => {
   return (
     <>
       <TableUser columns={columns} dataSource={data} />
-      {!!store.users.devsList.length && (
+      {!!store.users.filteredDevelopers.length && (
         <>
           <Title level={5}>Team SP: {store.users.totalSum}</Title>
           <Title level={5}>

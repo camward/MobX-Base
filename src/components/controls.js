@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Button, Input } from "antd";
+import { observer } from "mobx-react-lite";
 import store from "../store";
 
-const Controls = () => {
-  const { Search } = Input;
+const Controls = observer(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState("");
   const [sp, setSP] = useState("");
@@ -23,7 +23,9 @@ const Controls = () => {
     setIsModalVisible(false);
   };
 
-  const onSearch = (value) => console.log(value);
+  const onSearch = ({ target: { value } }) => {
+    store.users.updateFilter(value);
+  };
 
   const onChange = (e, code) => {
     switch (code) {
@@ -44,7 +46,13 @@ const Controls = () => {
 
   return (
     <div className="action-block">
-      <Search placeholder="Name" onSearch={onSearch} style={{ width: 300 }} />
+      <Input
+        placeholder="Search Name"
+        value={store.users.filter}
+        onChange={onSearch}
+        style={{ width: 300 }}
+        allowClear
+      />
       <div className="action-controls">
         <Button onClick={clearList}>Clear Table</Button>
         <Button type="primary" onClick={showModal}>
@@ -61,11 +69,16 @@ const Controls = () => {
         onCancel={handleCancel}
       >
         <div className="field field-input">
-          <Input placeholder="Name" onChange={(e) => onChange(e, "name")} />
+          <Input
+            placeholder="Name"
+            value={name}
+            onChange={(e) => onChange(e, "name")}
+          />
         </div>
         <div className="field ">
           <Input
             placeholder="Story Points"
+            value={sp}
             type="number"
             onChange={(e) => onChange(e, "sp")}
           />
@@ -73,6 +86,6 @@ const Controls = () => {
       </Modal>
     </div>
   );
-};
+});
 
 export default Controls;
