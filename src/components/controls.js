@@ -15,6 +15,7 @@ const Controls = () => {
   };
 
   const handleOk = () => {
+    store.users.addDeveloper({ name, sp });
     setIsModalVisible(false);
   };
 

@@ -27,6 +27,14 @@ class Users {
   clearList() {
     this.devsList = [];
   }
+
+  addDeveloper(dev) {
+    this.devsList.push({
+      id: this.devsList.length + 1,
+      name: dev.name,
+      sp: +dev.sp,
+    });
+  }
 }
 
 export default new Users();
