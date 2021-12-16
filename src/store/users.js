@@ -23,6 +23,10 @@ class Users {
       }
     });
   }
+
+  clearList() {
+    this.devsList = [];
+  }
 }
 
 export default new Users();

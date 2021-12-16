@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Input } from "antd";
+import store from "../store";
 
 const Controls = () => {
   const { Search } = Input;
@@ -36,11 +37,15 @@ const Controls = () => {
     }
   };
 
+  const clearList = () => {
+    store.users.clearList();
+  };
+
   return (
     <div className="action-block">
       <Search placeholder="Name" onSearch={onSearch} style={{ width: 300 }} />
       <div className="action-controls">
-        <Button>Clear Table</Button>
+        <Button onClick={clearList}>Clear Table</Button>
         <Button type="primary" onClick={showModal}>
           Add Record
         </Button>

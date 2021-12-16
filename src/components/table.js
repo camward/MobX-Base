@@ -1,7 +1,8 @@
 import { Table as TableUser, Typography } from "antd";
+import { observer } from "mobx-react-lite";
 import store from "../store";
 
-const Table = () => {
+const Table = observer(() => {
   const { Title } = Typography;
 
   const columns = [
@@ -29,10 +30,16 @@ const Table = () => {
   return (
     <>
       <TableUser columns={columns} dataSource={data} />
-      <Title level={5}>Team SP: {store.users.totalSum}</Title>
-      <Title level={5}>Top Performer: {store.users.topPerformer?.name}</Title>
+      {!!store.users.devsList.length && (
+        <>
+          <Title level={5}>Team SP: {store.users.totalSum}</Title>
+          <Title level={5}>
+            Top Performer: {store.users.topPerformer?.name}
+          </Title>
+        </>
+      )}
     </>
   );
-};
+});
 
 export default Table;
