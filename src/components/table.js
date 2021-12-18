@@ -40,7 +40,7 @@ const Table = observer(() => {
           </Badge.Ribbon>
           <br />
           <div className="loader-container">
-            {store.users.loading && (
+            {store.common.loading && (
               <div className="loader">
                 <Spin />
               </div>

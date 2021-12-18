@@ -48,7 +48,6 @@ const Controls = observer(() => {
     <div className="action-block">
       <Input
         placeholder="Search Name"
-        value={store.users.filter}
         onChange={onSearch}
         style={{ width: 300 }}
         allowClear
