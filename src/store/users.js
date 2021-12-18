@@ -1,4 +1,5 @@
-import { makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable, observable, configure } from "mobx";
+configure({ enforceActions: "observed" });
 
 class Users {
   devsList = [
@@ -10,6 +11,9 @@ class Users {
 
   @observable
   filter: "";
+
+  userData = {};
+  loading = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -49,6 +53,29 @@ class Users {
       name: dev.name,
       sp: +dev.sp,
     });
+  }
+
+  setLoading(value) {
+    this.loading = value;
+  }
+
+  setUserData(data) {
+    this.userData = { ...data };
+  }
+
+  fetchUserData(id) {
+    this.setLoading(true);
+
+    setTimeout(() => {
+      fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then((response) => response.json())
+        .then((result) => {
+          this.setUserData(result);
+        })
+        .finally(() => {
+          this.setLoading(false);
+        });
+    }, 500);
   }
 }
 
